@@ -57,7 +57,7 @@
 </template>
 
 <script>
-    import * as common from '@/assets/js/common';
+    import * as common from '../../../assets/js/common';
 
     export default {
         name: 'Login',

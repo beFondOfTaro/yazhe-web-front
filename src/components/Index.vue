@@ -13,19 +13,16 @@
       </div>
 
     </div>
-    <login/>
   </div>
 </template>
 
 <script>
     import Footer from '@/components/index/Footer'
-    import Login from '@/components/index/Login'
     import TopNav from "@/components/common/top-nav/TopNav"
 
     export default {
         name: 'Index',
         components: {
-            Login,
             TopNav,
             Footer
         }

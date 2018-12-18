@@ -71,5 +71,23 @@
 </script>
 
 <style scoped>
-
+    /* 轮播图 */
+    .carousel {
+        height: 440px;
+        background-color: #000;
+    }
+    .carousel .item {
+        background-color: #000;
+        height: 440px;
+    }
+    .carousel img{
+        margin: auto;
+        width: 100%;
+    }
+    .carousel-caption{
+        margin-bottom: 58px;
+    }
+    .carousel-indicators {
+        margin-bottom: 38px;
+    }
 </style>
