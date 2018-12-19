@@ -1,13 +1,18 @@
-
 // api统一定义
 export const api = {
-    hostName: '/api/',
+    hostName: '/api',
 
     login: {
-        login: 'user-auth/login'
+        login: '/user-auth/login'
     },
     webStatistic: {
-        clicksInc: 'user-auth/clicks-inc'
+        clicksInc: '/user-auth/user-auth/clicks-inc'
+    },
+    blog: {
+        article: {
+            getArticleList: '/blog/article/get-article-list',
+            getArticle: '/blog/article'
+        }
     },
     get (name) {
         return this.hostName + name;
@@ -38,4 +43,15 @@ export function setLocalStorage (key, value) {
  */
 export function getLocalStorage (key, value) {
     return JSON.parse(localStorage.getItem(key))
+}
+
+/**
+ * 分页对象构造函数
+ * @constructor
+ */
+export class QueryPage {
+    constructor(){
+        this.pageSize = 20;
+        this.pageNum = 1;
+    }
 }

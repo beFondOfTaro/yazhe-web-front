@@ -24,12 +24,10 @@
         methods: {
             clicksInc: function () {
                 let vue = this;
-                $.ajax({
-                    url: common.api.get(common.api.webStatistic.clicksInc),
-                    method: 'post',
-                    success: function (data) {
-                        vue.clicks = data.data
-                    }
+                this.$http.request({
+                    url: common.api.get(common.api.webStatistic.clicksInc)
+                }).then(function (res) {
+                    vue.clicks = res.data;
                 });
             }
         }

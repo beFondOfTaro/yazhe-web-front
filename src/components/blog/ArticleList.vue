@@ -99,8 +99,45 @@
 </template>
 
 <script>
+    import {api, QueryPage} from "@/assets/js/common";
+
     export default {
-        name: "ArticleList"
+        name: "ArticleList",
+        data() {
+            return {
+                articleList: [],
+                request: {
+                    articleList: {
+                        queryPage: new QueryPage()
+                    }
+                }
+            }
+        },
+        methods: {
+            getArticleList() {
+                let vue = this;
+                this.$http.request({
+                    url: api.get(api.blog.article.getArticleList),
+                    data: vue.request.articleList,
+                }).then(function (res) {
+                    if (res.data.code === 0) {
+                        vue.articleList = res.data.list;
+                    }else {
+                        console.error(res.msg);
+                    }
+                });
+                this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
+                    if (res.data.code === 0) {
+                        alert(res.data);
+                    }else {
+                        console.error(res.msg);
+                    }
+                })
+            }
+        },
+        created() {
+            this.getArticleList();
+        }
     }
 </script>
 

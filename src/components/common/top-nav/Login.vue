@@ -72,23 +72,18 @@
                 var loginUsername = this.identifier;
                 var loginPassword = this.credential;
                 let vue = this;
-                $.ajax({
-                    url: common.api.get(common.api.login.login),
-                    type: 'post',
-                    data: {
-                        identifier: loginUsername,
-                        credential: loginPassword
-                    },
-                    success: function (data) {
-                        if (data.code === 0) {
-                            common.setLocalStorage(common.storageKey.token, data.data.token)
-                            common.setLocalStorage(common.storageKey.userInfo, (data.data.userInfo))
-                            alert('登录成功')
-                            $('#login-modal').modal('hide')
-                            vue.isLogin = true
-                        }
+                this.$http.request({
+                    url: common.api.get(common.api.login.login) + "?identifier=" + loginUsername + "&credential=" + loginPassword,
+                }).then(function (res) {
+                    console.log(res);
+                    if (res.data.code === 0) {
+                        common.setLocalStorage(common.storageKey.token, res.data.data.token);
+                        common.setLocalStorage(common.storageKey.userInfo, (res.data.data.userInfo));
+                        alert('登录成功');
+                        $('#login-modal').modal('hide');
+                        this.isLogin = true
                     }
-                })
+                });
             }
         }
     }
