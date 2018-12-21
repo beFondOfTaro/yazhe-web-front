@@ -126,17 +126,20 @@
                         console.error(res.msg);
                     }
                 });
+            },
+            getArticle() {
                 this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
                     if (res.data.code === 0) {
-                        alert(res.data);
+                        // alert(res.data);
                     }else {
                         console.error(res.msg);
                     }
-                })
+                });
             }
         },
         created() {
-            this.getArticleList();
+            //this.getArticleList();
+            this.getArticle();
         }
     }
 </script>

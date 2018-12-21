@@ -11,7 +11,7 @@ export const api = {
     blog: {
         article: {
             getArticleList: '/blog/article/get-article-list',
-            getArticle: '/blog/article/article-by-id'
+            getArticle: '/blog/article/get-article-by-id'
         }
     },
     get (name) {
