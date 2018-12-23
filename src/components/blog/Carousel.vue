@@ -15,39 +15,39 @@
         <!-- 内容 -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="img/ic_p4.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
             <div class="item">
-                <img src="img/ic_p5.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
             <div class="item">
-                <img src="img/ic_p6.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
             <div class="item">
-                <img src="img/ic_p7.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
             <div class="item">
-                <img src="img/ic_p8.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
             <div class="item">
-                <img src="img/ic_p9.jpg">
+                <img src="../../assets/img/timg.jpg">
                 <p class="carousel-caption">
-                    骑马
+                    星空
                 </p>
             </div>
         </div>
@@ -73,12 +73,12 @@
 <style scoped>
     /* 轮播图 */
     .carousel {
-        height: 440px;
+        height: 360px;
         background-color: #000;
     }
     .carousel .item {
         background-color: #000;
-        height: 440px;
+        height: 360px;
     }
     .carousel img{
         margin: auto;

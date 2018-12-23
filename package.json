@@ -14,8 +14,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "es6-promise": "^4.2.5",
+    "markdown-it-emoji": "^1.4.0",
+    "mavon-editor": "^2.6.17",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

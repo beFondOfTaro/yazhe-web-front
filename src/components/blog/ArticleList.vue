@@ -1,5 +1,4 @@
 <template>
-    <div class="col-xs-9">
         <div class="list-group div_article">
             <!-- 子头栏 -->
             <a href="#" class="list-group-item active item_article_first">
@@ -8,94 +7,25 @@
                 </h4>
             </a>
             <!-- 文章列表 -->
-            <div class="list-group-item item_article">
+            <div class="list-group-item item_article" v-for="article in articleList">
                 <div class="row">
                     <div class="div_center col-xs-9">
                         <div class="list-group-item-heading div_article_title">
                             <strong>
-                                Android框架设计理念
+                                {{article.title}}
                             </strong>
                         </div>
                         <p class="list-group-item-text div_article_content">
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
+                            {{article.content}}}
                         </p>
                     </div>
                     <!-- 右侧图片，信息 -->
                     <div class="col-xs-3 div_right_info">
                         <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="list-group-item item_article">
-                <div class="row">
-                    <div class="div_center col-xs-9">
-                        <div class="list-group-item-heading div_article_title">
-                            <strong>
-                                Android框架设计理念
-                            </strong>
-                        </div>
-                        <p class="list-group-item-text div_article_content">
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                        </p>
-                    </div>
-                    <!-- 右侧图片，信息 -->
-                    <div class="col-xs-3 div_right_info">
-                        <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="list-group-item item_article">
-                <div class="row">
-                    <div class="div_center col-xs-9">
-                        <div class="list-group-item-heading div_article_title">
-                            <strong>
-                                Android框架设计理念
-                            </strong>
-                        </div>
-                        <p class="list-group-item-text div_article_content">
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                        </p>
-                    </div>
-                    <!-- 右侧图片，信息 -->
-                    <div class="col-xs-3 div_right_info">
-                        <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="list-group-item item_article">
-                <div class="row">
-                    <div class="div_center col-xs-9">
-                        <div class="list-group-item-heading div_article_title">
-                            <strong>
-                                Android框架设计理念
-                            </strong>
-                        </div>
-                        <p class="list-group-item-text div_article_content">
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                            所有设计源于生活，框终点在于分层、层与层之间如何交流。
-                        </p>
-                    </div>
-                    <!-- 右侧图片，信息 -->
-                    <div class="col-xs-3 div_right_info">
-                        <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
-                        <div>2017/12/9 12:09</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -121,25 +51,24 @@
                     data: vue.request.articleList,
                 }).then(function (res) {
                     if (res.data.code === 0) {
-                        vue.articleList = res.data.list;
-                    }else {
-                        console.error(res.msg);
-                    }
-                });
-            },
-            getArticle() {
-                this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
-                    if (res.data.code === 0) {
-                        // alert(res.data);
+                        vue.articleList = res.data.data.list;
                     }else {
                         console.error(res.msg);
                     }
                 });
             }
+            // getArticle() {
+            //     this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
+            //         if (res.data.code === 0) {
+            //             // alert(res.data);
+            //         }else {
+            //             console.error(res.msg);
+            //         }
+            //     });
+            // }
         },
         created() {
-            //this.getArticleList();
-            this.getArticle();
+            this.getArticleList();
         }
     }
 </script>

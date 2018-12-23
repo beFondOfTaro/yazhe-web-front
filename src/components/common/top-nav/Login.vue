@@ -58,6 +58,7 @@
 
 <script>
     import * as common from '../../../assets/js/common';
+    import {CHANGE_LOGIN_STATE} from "@/assets/js/mutation-types";
 
     export default {
         name: 'Login',
@@ -81,7 +82,7 @@
                         common.setLocalStorage(common.storageKey.userInfo, (res.data.data.userInfo));
                         alert('登录成功');
                         $('#login-modal').modal('hide');
-                        this.isLogin = true
+                        vue.$store.commit(CHANGE_LOGIN_STATE);
                     }
                 });
             }

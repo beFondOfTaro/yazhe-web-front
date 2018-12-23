@@ -4,7 +4,6 @@
     <div class="site-wrapper-inner">
 
       <div class="cover-container">
-        <top-nav></top-nav>
         <div class="inner cover">
           <h1 class="cover-heading">这里是雅哲的小网站</h1>
           <p class="lead">网站正在努力建设中噢，更多功能后续开放</p>
@@ -36,5 +35,58 @@
         color: #fff;
         text-align: center;
         background-image: url("../assets/img/bg.jpg");
+    }
+
+    /* Extra markup and styles for table-esque vertical and horizontal centering */
+    .site-wrapper {
+        display: table;
+        width: 100%;
+        height: 100%; /* For at least Firefox */
+        min-height: 100%;
+        -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+        box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+
+    }
+    .site-wrapper-inner {
+        display: table-cell;
+        vertical-align: top;
+    }
+    .cover-container {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Padding for spacing */
+    .inner {
+        padding: 30px;
+    }
+
+    /*
+     * Cover
+     */
+
+    .cover {
+        padding: 0 20px;
+    }
+    .cover .btn-lg {
+        padding: 10px 20px;
+        font-weight: bold;
+    }
+
+    @media (min-width: 768px) {
+        /* Start the vertical centering */
+        .site-wrapper-inner {
+            vertical-align: middle;
+        }
+        /* Handle the widths */
+        .cover-container {
+            width: 100%; /* Must be percentage or pixels for horizontal alignment */
+        }
+    }
+
+    @media (min-width: 992px) {
+        .cover-container {
+            width: 700px;
+        }
     }
 </style>

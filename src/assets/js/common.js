@@ -11,7 +11,9 @@ export const api = {
     blog: {
         article: {
             getArticleList: '/blog/article/get-article-list',
-            getArticle: '/blog/article/get-article-by-id'
+            getArticle: '/blog/article/get-article-by-id',
+            //添加文章
+            addArticle: '/blog/article/add-article'
         }
     },
     get (name) {
@@ -23,7 +25,9 @@ export const storageKey = {
     // 用户信息
     userInfo: 'u_info',
     // token
-    token: 'token'
+    token: 'token',
+    //正在编辑的文章
+    writingArticle: 'writing_article'
 };
 
 /**
