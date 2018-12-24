@@ -23,6 +23,14 @@
                     <div class="col-xs-3 div_right_info">
                         <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
                     </div>
+                    <br>
+                    <div class="col-xs-6">
+                        <span>时间：{{getParsedTime(article.createTime)}}</span>
+                    </div>
+                    <div class="col-xs-6 div_right_info">
+                        <span class="glyphicon glyphicon-heart"></span> {{article.praiseClicks}}
+                        <span>阅读量：{{article.readingAmount}}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,6 +64,10 @@
                         console.error(res.msg);
                     }
                 });
+            },
+            getParsedTime(timestamp){
+                let date = new Date(timestamp);
+                return date.getFullYear() + "." + date.getMonth() + "." + date.getDay();
             }
             // getArticle() {
             //     this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
@@ -95,8 +107,6 @@
 
     .item_article .row {
         width: 100%;
-        display: flex;
-        flex-direction: row;
         align-items: center;
         overflow: hidden;
     }

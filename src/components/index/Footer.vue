@@ -27,7 +27,7 @@
                 this.$http.request({
                     url: common.api.get(common.api.webStatistic.clicksInc)
                 }).then(function (res) {
-                    vue.clicks = res.data;
+                    vue.clicks = res.data.data;
                 });
             }
         }

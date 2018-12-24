@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class=""><label for="article-title">标题：</label><input id="article-title" placeholder="请输入标题" type="text" v-model="article.title"></div>
         <mavon-editor class="editor" v-model="article.content" @save="saveArticle()" />
         <div><button id="submit-article" type="button" class="btn btn-default" @click="submitArticle()">提交</button></div>
     </div>
@@ -15,6 +16,7 @@
     // 使用markdown编辑器
     Vue.use(mavonEditor);
     let md = mavonEditor.markdownIt;
+    //关闭工具栏上的“查看html源码”,没起作用
     md.set({
         toolbars: {
             htmlcode: false
@@ -67,8 +69,11 @@
 </script>
 
 <style scoped>
-    .editor{
+    #article-title{
         margin-top: 51px;
+    }
+
+    .editor{
         z-index: 1029;
     }
 
