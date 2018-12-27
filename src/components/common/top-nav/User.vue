@@ -12,7 +12,7 @@
         <img class="user-img" src="/static/favicon.ico"><span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
-        <li><a href="#">登录用户：<strong style="display: block">{{ userInfo.username }}({{parseRoleList(userInfo.roleList)}})</strong></a>
+        <li><a href="#">登录用户：<strong style="display: block">{{ getUserInfo.username }}({{parseRoleList(getUserInfo.roleList)}})</strong></a>
         </li>
         <li
           role="separator"
@@ -30,22 +30,29 @@
 </template>
 
 <script>
-    import * as common from '../../../assets/js/common';
-    import {CHANGE_LOGIN_STATE} from "@/assets/js/mutation-types";
+    import {LOGOUT} from "@/assets/js/mutation-types";
 
     export default {
         name: 'User',
         data () {
             return {
-                userInfo: {
-                    username: '',
-                    roleList: []
-                }
+
             }
         },
         computed: {
             getIsLogin(){
-                return this.$store.state.isLogin;
+                return this.$store.state.token !== null;
+            },
+            getUserInfo(){
+                let userInfo = this.$store.state.userInfo;
+                if (userInfo === null) {
+                    return {
+                        username: '',
+                        roleList: []
+                    }
+                }else {
+                    return userInfo;
+                }
             }
         },
         methods: {
@@ -59,15 +66,14 @@
              },
             //注销
             logout () {
-                localStorage.removeItem(common.storageKey.token);
-                localStorage.removeItem(common.storageKey.userInfo);
-                this.$store.commit(CHANGE_LOGIN_STATE);
+                this.$store.commit(LOGOUT);
             }
         },
         created () {
-            let userInfo = common.getLocalStorage(common.storageKey.userInfo);
-            this.isLogin = userInfo !== null;
-            this.userInfo = userInfo;
+            let userInfo = this.$store.state.userInfo;
+            if (userInfo !== null) {
+                this.userInfo = userInfo;
+            }
         }
     }
 </script>

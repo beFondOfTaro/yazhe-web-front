@@ -21,16 +21,31 @@ Vue.prototype.$http = axios.create({
 //创建Vuex仓库
 import Vuex from 'vuex'
 import 'es6-promise/auto'
-import {CHANGE_LOGIN_STATE} from "@/assets/js/mutation-types";
+import {LOGIN, LOGOUT} from "@/assets/js/mutation-types";
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
-        //登录状态
-        isLogin: common.getLocalStorage(common.storageKey.userInfo) !== null
+        //token
+        token: common.getLocalStorage(common.storageKey.token),
+        //用户信息
+        userInfo: common.getLocalStorage(common.storageKey.userInfo)
     },
     mutations: {
-        [CHANGE_LOGIN_STATE](state){
-            state.isLogin = !state.isLogin;
+        [LOGOUT](state){
+            localStorage.removeItem(common.storageKey.userInfo);
+            localStorage.removeItem(common.storageKey.token);
+            //不能直接置空，否则页面渲染会出错
+            state.userInfo = {
+                username: '',
+                roleList: []
+            };
+            state.token = null;
+        },
+        [LOGIN](state,payload){
+            common.setLocalStorage(common.storageKey.token, payload.token);
+            common.setLocalStorage(common.storageKey.userInfo, payload.userInfo);
+            state.userInfo = payload.userInfo;
+            state.token = payload.token;
         }
     }
 });

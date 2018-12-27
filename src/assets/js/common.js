@@ -45,8 +45,12 @@ export function setLocalStorage (key, value) {
  * @param value
  * @returns {any}
  */
-export function getLocalStorage (key, value) {
-    return JSON.parse(localStorage.getItem(key))
+export function getLocalStorage (key) {
+    let value = localStorage.getItem(key);
+    if (value === undefined || value === null) {
+        return null;
+    }
+    return JSON.parse(value);
 }
 
 /**

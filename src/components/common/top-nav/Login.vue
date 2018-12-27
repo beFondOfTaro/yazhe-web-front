@@ -58,7 +58,7 @@
 
 <script>
     import * as common from '../../../assets/js/common';
-    import {CHANGE_LOGIN_STATE} from "@/assets/js/mutation-types";
+    import {LOGIN} from "@/assets/js/mutation-types";
 
     export default {
         name: 'Login',
@@ -76,13 +76,13 @@
                 this.$http.request({
                     url: common.api.get(common.api.login.login) + "?identifier=" + loginUsername + "&credential=" + loginPassword,
                 }).then(function (res) {
-                    console.log(res);
                     if (res.data.code === 0) {
-                        common.setLocalStorage(common.storageKey.token, res.data.data.token);
-                        common.setLocalStorage(common.storageKey.userInfo, (res.data.data.userInfo));
+                        vue.$store.commit(LOGIN,{
+                            token: res.data.data.token,
+                            userInfo: res.data.data.userInfo
+                        });
                         alert('登录成功');
                         $('#login-modal').modal('hide');
-                        vue.$store.commit(CHANGE_LOGIN_STATE);
                     }
                 });
             }

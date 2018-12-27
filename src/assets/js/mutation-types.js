@@ -1,5 +1,10 @@
 /**
- * 改变登录状态
+ * 注销
  * @type {string}
  */
-export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";
+export const LOGOUT = "LOGOUT";
+/**
+ * 登录
+ * @type {string}
+ */
+export const LOGIN = "LOGIN";
