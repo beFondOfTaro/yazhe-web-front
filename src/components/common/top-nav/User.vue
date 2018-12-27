@@ -17,7 +17,7 @@
         <li
           role="separator"
           class="divider"></li>
-          <li><button @click="logout()">注销</button></li>
+          <li><button class="btn btn-default" @click="logout()">注销</button></li>
       </ul>
     </li>
     <li
