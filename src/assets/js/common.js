@@ -6,7 +6,7 @@ export const api = {
         login: '/user-auth/login'
     },
     webStatistic: {
-        clicksInc: '/user-auth/user-auth/clicks-inc'
+        clicksInc: '/user-auth/clicks-inc'
     },
     blog: {
         article: {
