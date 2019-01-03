@@ -5,18 +5,13 @@ import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap'
-import axios from 'axios'
 import * as common from '@/assets/js/common'
 
 
 Vue.config.productionTip = false;
 
 //js一定要写在new Vue()之前，否则不会执行
-Vue.prototype.$http = axios.create({
-    baseURL: '/',
-    headers: {token: common.getLocalStorage(common.storageKey.token)},
-    method: 'post'
-});
+common.createAxios();
 
 //创建Vuex仓库
 import Vuex from 'vuex'

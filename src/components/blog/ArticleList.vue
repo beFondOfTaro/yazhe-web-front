@@ -11,13 +11,10 @@
                 <div class="row">
                     <div class="div_center col-xs-9">
                         <div class="list-group-item-heading div_article_title">
-                            <strong>
-                                {{article.title}}
-                            </strong>
+                            <router-link :to="{'name': 'Article', query: {articleId: article.id}}"><strong>{{article.title}}</strong></router-link>
                         </div>
-                        <p class="list-group-item-text div_article_content">
-                            {{article.content}}}
-                        </p>
+                        <div class="list-group-item-text div_article_content" v-text="getArticleDigest(article.content)">
+                        </div>
                     </div>
                     <!-- 右侧图片，信息 -->
                     <div class="col-xs-3 div_right_info">
@@ -38,6 +35,7 @@
 
 <script>
     import {api, QueryPage} from "@/assets/js/common";
+    import {mavonEditor} from 'mavon-editor';
 
     export default {
         name: "ArticleList",
@@ -50,6 +48,9 @@
                     }
                 }
             }
+        },
+        computed: {
+
         },
         methods: {
             getArticleList() {
@@ -68,6 +69,12 @@
             getParsedTime(timestamp){
                 let date = new Date(timestamp);
                 return date.getFullYear() + "." + date.getMonth() + "." + date.getDay();
+            },
+            //获取文章摘要
+            getArticleDigest(content){
+                let md = mavonEditor.getMarkdownIt();
+                let html = md.render(content);
+                return $(html).text();
             }
             // getArticle() {
             //     this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {

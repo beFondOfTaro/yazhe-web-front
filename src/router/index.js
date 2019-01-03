@@ -3,8 +3,9 @@ import Router from 'vue-router'
 import Index from '@/components/Index'
 import Blog from "@/components/blog/Blog";
 import ArticleEditor from "@/components/blog/ArticleEditor";
+import Article from "@/components/blog/Article";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     mode: 'history',
@@ -23,6 +24,11 @@ export default new Router({
             path: '/article-editor',
             name: 'ArticleEditor',
             component: ArticleEditor
+        },
+        {
+            path: '/article',
+            name: 'Article',
+            component: Article
         }
     ]
 })

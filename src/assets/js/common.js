@@ -63,3 +63,17 @@ export class QueryPage {
         this.pageNum = 1;
     }
 }
+
+import Vue from "vue";
+import axios from 'axios';
+
+/**
+ * 创建axios对象，用于ajax请求
+ */
+export function createAxios() {
+    Vue.prototype.$http = axios.create({
+        baseURL: '/',
+        headers: {token: getLocalStorage(storageKey.token)},
+        method: 'post'
+    });
+}

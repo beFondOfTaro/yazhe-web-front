@@ -81,6 +81,8 @@
                             token: res.data.data.token,
                             userInfo: res.data.data.userInfo
                         });
+                        //刷新axios配置
+                        common.createAxios();
                         alert('登录成功');
                         $('#login-modal').modal('hide');
                     }

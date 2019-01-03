@@ -24,13 +24,6 @@
  * Globals
  */
 
-    /* Links */
-    a,
-    a:focus,
-    a:hover {
-        color: #fff;
-    }
-
     html,body,#app{
         height: 100%;
     }
