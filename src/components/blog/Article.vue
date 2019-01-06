@@ -61,10 +61,13 @@
             //点赞
             praiseArticle() {
                 let vue = this;
+                if (this.praised) {
+                    return;
+                }
                 this.$http.request({
                     url: api.get(api.blog.article.praiseArticle) + vue.article.id
                 }).then(function (res) {
-                    if (res.dada.code === 0) {
+                    if (res.data.code === 0) {
                         vue.article.praiseClicks++;
                         vue.praised = true;
                     }
