@@ -13,7 +13,9 @@ export const api = {
             getArticleList: '/blog/article/get-article-list',
             getArticle: '/blog/article/get-article-by-id',
             //添加文章
-            addArticle: '/blog/article/add-article'
+            addArticle: '/blog/article/add-article',
+            //点赞
+            praiseArticle: '/blog/article/praise-article/'
         }
     },
     get (name) {
@@ -76,4 +78,14 @@ export function createAxios() {
         headers: {token: getLocalStorage(storageKey.token)},
         method: 'post'
     });
+}
+
+/**
+ * 格式化时间
+ * @param timestamp 时间戳
+ * @returns {string} yyyy.mm.dd
+ */
+export function getParsedTime(timestamp) {
+    let date = new Date(timestamp);
+    return date.getFullYear() + "." + date.getMonth() + "." + date.getDay();
 }

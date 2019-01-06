@@ -36,6 +36,7 @@
 <script>
     import {api, QueryPage} from "@/assets/js/common";
     import {mavonEditor} from 'mavon-editor';
+    import {getParsedTime} from "../../assets/js/common";
 
     export default {
         name: "ArticleList",
@@ -67,8 +68,7 @@
                 });
             },
             getParsedTime(timestamp){
-                let date = new Date(timestamp);
-                return date.getFullYear() + "." + date.getMonth() + "." + date.getDay();
+                return getParsedTime(timestamp);
             },
             //获取文章摘要
             getArticleDigest(content){
@@ -76,15 +76,6 @@
                 let html = md.render(content);
                 return $(html).text();
             }
-            // getArticle() {
-            //     this.$http.get(api.get(api.blog.article.getArticle + "/1")).then(function (res) {
-            //         if (res.data.code === 0) {
-            //             // alert(res.data);
-            //         }else {
-            //             console.error(res.msg);
-            //         }
-            //     });
-            // }
         },
         created() {
             this.getArticleList();

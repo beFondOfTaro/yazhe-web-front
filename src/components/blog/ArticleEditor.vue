@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class=""><label for="article-title">标题：</label><input id="article-title" placeholder="请输入标题" type="text" v-model="article.title"></div>
+        <div class="">
+            <label for="article-title">标题：</label>
+            <input id="article-title" placeholder="请输入标题" type="text" v-model="article.title">
+        </div>
         <mavon-editor class="editor" v-model="article.content" @save="saveArticle()" />
         <div><button id="submit-article" type="button" class="btn btn-default" @click="submitArticle()">提交</button></div>
     </div>
@@ -44,6 +47,12 @@
             },
             submitArticle() {
                 let vue = this;
+                //验证表单
+                let pattern = '.+';
+                if (!(this.article.title.match(pattern) && this.article.content.match(pattern))){
+                    alert("标题或正文不能为空！");
+                    return;
+                }
                 this.$http.request({
                     url: api.get(api.blog.article.addArticle),
                     data: vue.article
