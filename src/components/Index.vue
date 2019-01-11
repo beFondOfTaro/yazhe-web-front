@@ -8,10 +8,11 @@
           <h1 class="cover-heading">这里是雅哲的小网站</h1>
           <p class="lead">网站正在努力建设中噢，更多功能后续开放</p>
         </div>
-        <Footer></Footer>
+        
       </div>
 
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -35,6 +36,7 @@
         color: #fff;
         text-align: center;
         background-image: url("../assets/img/bg.jpg");
+        padding-top: 51px;
     }
 
     /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -48,8 +50,10 @@
 
     }
     .site-wrapper-inner {
-        display: table-cell;
         vertical-align: top;
+        position: absolute;
+        width: 100%;
+        bottom: 50%;
     }
     .cover-container {
         margin-right: auto;

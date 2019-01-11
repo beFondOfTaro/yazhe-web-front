@@ -40,23 +40,9 @@
      */
 
     .mastfoot {
-        color: #999; /* IE8 proofing */
         color: rgba(255,255,255,.5);
-    }
-
-    @media (min-width: 768px) {
-        /* Pull out the header and footer */
-
-        .mastfoot {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .mastfoot{
-            width: 700px;
-        }
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 </style>
