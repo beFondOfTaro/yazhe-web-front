@@ -58,7 +58,8 @@
 
 <script>
     import * as common from '../../../assets/js/common';
-    import {LOGIN} from "@/assets/js/mutation-types";
+    import {api, getApi, http, createAxios, login} from "@/assets/js/api";
+    import {LOGIN,DISPALY_LOGIN_MODAL} from "@/assets/js/mutation-types";
 
     export default {
         name: 'Login',
@@ -73,21 +74,34 @@
                 var loginUsername = this.identifier;
                 var loginPassword = this.credential;
                 let vue = this;
-                this.$http.request({
-                    url: common.api.get(common.api.login.login) + "?identifier=" + loginUsername + "&credential=" + loginPassword,
-                }).then(function (res) {
+                login({
+                    identifier: loginUsername,
+                    credential: loginPassword
+                },function(res) {
                     if (res.data.code === 0) {
                         vue.$store.commit(LOGIN,{
                             token: res.data.data.token,
                             userInfo: res.data.data.userInfo
                         });
-                        //刷新axios配置
-                        common.createAxios();
+                        // 刷新axios配置
+                        createAxios();
                         alert('登录成功');
                         $('#login-modal').modal('hide');
+                    }else {
+                        alert('用户名或密码错误');
                     }
                 });
             }
+        },
+        mounted() {
+            // 绑定模态框事件
+            let vue = this;
+            $("#login-modal").on("show.bs.modal", function(e) {
+            vue.$store.commit(DISPALY_LOGIN_MODAL);
+            });
+            $("#login-modal").on("hide.bs.modal", function(e) {
+            vue.$store.commit(DISPALY_LOGIN_MODAL);
+            });
         }
     }
 </script>

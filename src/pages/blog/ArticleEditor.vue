@@ -14,7 +14,8 @@
     import mavonEditor from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
     import emoji from 'markdown-it-emoji'
-    import {api, getLocalStorage, QueryPage, setLocalStorage, storageKey} from "@/assets/js/common";
+    import {getLocalStorage, QueryPage, setLocalStorage, storageKey} from "@/assets/js/common";
+    import {api, getApi, http} from "@/assets/js/api";
 
     // 使用markdown编辑器
     Vue.use(mavonEditor);
@@ -53,8 +54,8 @@
                     alert("标题或正文不能为空！");
                     return;
                 }
-                this.$http.request({
-                    url: api.get(api.blog.article.addArticle),
+                http.request({
+                    url: getApi(api.blog.article.addArticle),
                     data: vue.article
                 }).then(function (res) {
                     if (res.data.code === 0) {

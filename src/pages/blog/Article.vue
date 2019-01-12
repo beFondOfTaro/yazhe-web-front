@@ -18,7 +18,8 @@
 <script>
 
 
-    import {api, getParsedTime} from "../../assets/js/common";
+    import {getParsedTime} from "../../assets/js/common";
+    import {api, getApi, http} from "@/assets/js/api";
     import {mavonEditor} from 'mavon-editor';
 
     export default {
@@ -49,8 +50,8 @@
         methods:{
             getArticle() {
                 let vue = this;
-                this.$http.request({
-                    url: api.get(api.blog.article.getArticle) + "/" + vue.$route.query.articleId,
+                http.request({
+                    url: getApi(api.blog.article.getArticle) + "/" + vue.$route.query.articleId,
                     method: 'get'
                 }).then(function (res) {
                    if (res.data.code === 0) {
@@ -64,8 +65,8 @@
                 if (this.praised) {
                     return;
                 }
-                this.$http.request({
-                    url: api.get(api.blog.article.praiseArticle) + vue.article.id
+                http.request({
+                    url: getApi(api.blog.article.praiseArticle) + vue.article.id
                 }).then(function (res) {
                     if (res.data.code === 0) {
                         vue.article.praiseClicks++;

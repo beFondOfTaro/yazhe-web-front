@@ -66,20 +66,6 @@ export class QueryPage {
     }
 }
 
-import Vue from "vue";
-import axios from 'axios';
-
-/**
- * 创建axios对象，用于ajax请求
- */
-export function createAxios() {
-    Vue.prototype.$http = axios.create({
-        baseURL: '/',
-        headers: {token: getLocalStorage(storageKey.token)},
-        method: 'post'
-    });
-}
-
 /**
  * 格式化时间
  * @param timestamp 时间戳

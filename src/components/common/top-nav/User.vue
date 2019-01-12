@@ -22,10 +22,17 @@
     </li>
     <li
       v-if="!getIsLogin"
-      class="active"><a
-        href="javascript:void (0);"
+      :class="{active: isLoginShown}"><a
+        href="#"
         data-toggle="modal"
         data-target="#login-modal">登录<span class="sr-only">(current)</span></a></li>
+    <li
+      v-if="!getIsLogin"
+      :class="{active: isRegisterShown}"><a
+        href="#"
+        data-toggle="modal"
+        data-target="#register-modal">注册<span class="sr-only">(current)</span></a>
+    </li>
   </ul>
 </template>
 
@@ -36,7 +43,7 @@
         name: 'User',
         data () {
             return {
-
+                userInfo: {}
             }
         },
         computed: {
@@ -53,6 +60,12 @@
                 }else {
                     return userInfo;
                 }
+            },
+            isRegisterShown() {
+                return this.$store.state.isRegisterShown;
+            },
+            isLoginShown () {
+                return this.$store.state.isLoginShown;
             }
         },
         methods: {

@@ -10,6 +10,7 @@
 
 <script>
     import * as common from '@/assets/js/common';
+    import {api, getApi, http} from "@/assets/js/api";
 
     export default {
         name: 'Footer',
@@ -24,8 +25,8 @@
         methods: {
             clicksInc: function () {
                 let vue = this;
-                this.$http.request({
-                    url: common.api.get(common.api.webStatistic.clicksInc)
+                http.request({
+                    url: getApi(api.webStatistic.clicksInc)
                 }).then(function (res) {
                     vue.clicks = res.data.data;
                 });

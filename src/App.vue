@@ -3,18 +3,29 @@
       <top-nav/>
     <router-view/>
       <login/>
+      <register/>
   </div>
 </template>
 
 <script>
     import Login from "@/components/common/top-nav/Login";
     import TopNav from "@/components/common/top-nav/TopNav";
+    import Register from "@/components/common/top-nav/Register";
 
     export default {
         name: 'App',
         components: {
             Login,
-            TopNav
+            TopNav,
+            Register
+        },
+        data() {
+            return {
+                
+            }
+        },
+        mounted() {
+            
         }
     }
 </script>

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
-import Blog from "@/components/blog/Blog";
-import ArticleEditor from "@/components/blog/ArticleEditor";
-import Article from "@/components/blog/Article";
+import Index from '@/pages/Index'
+import Blog from '@/pages/blog/Blog';
+import ArticleEditor from '@/pages/blog/ArticleEditor';
+import Article from '@/pages/blog/Article';
 
 Vue.use(Router);
 

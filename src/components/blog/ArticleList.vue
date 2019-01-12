@@ -7,7 +7,7 @@
                 </h4>
             </a>
             <!-- 文章列表 -->
-            <div class="list-group-item item_article" v-for="article in articleList">
+            <div class="list-group-item item_article" v-for="article in articleList" :key="article.id">
                 <div class="row">
                     <div class="div_center col-xs-9">
                         <div class="list-group-item-heading div_article_title">
@@ -34,7 +34,8 @@
 </template>
 
 <script>
-    import {api, QueryPage} from "@/assets/js/common";
+    import {QueryPage} from "@/assets/js/common";
+    import {getArticleList} from "@/assets/js/api";
     import {mavonEditor} from 'mavon-editor';
     import {getParsedTime} from "../../assets/js/common";
 
@@ -56,16 +57,13 @@
         methods: {
             getArticleList() {
                 let vue = this;
-                this.$http.request({
-                    url: api.get(api.blog.article.getArticleList),
-                    data: vue.request.articleList,
-                }).then(function (res) {
+                getArticleList(vue.request.articleList,function (res) {
                     if (res.data.code === 0) {
                         vue.articleList = res.data.data.list;
                     }else {
                         console.error(res.msg);
                     }
-                });
+                })
             },
             getParsedTime(timestamp){
                 return getParsedTime(timestamp);
