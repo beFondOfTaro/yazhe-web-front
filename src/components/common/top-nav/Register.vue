@@ -128,6 +128,8 @@ export default {
         function (res) {
           if (res.data.code === 0){
             alert("注册成功！");
+          }else{
+            alert(res.data.msg);
           }
         })
     }
