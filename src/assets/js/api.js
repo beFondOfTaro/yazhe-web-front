@@ -20,7 +20,9 @@ export const api = {
             // 添加文章
             addArticle: '/blog/article/add-article',
             // 点赞
-            praiseArticle: '/blog/article/praise-article/'
+            praiseArticle: '/blog/article/praise-article/',
+            // 上传文章图片
+            uploadArticlePicture: '/blog/article/upload-article-picture'
         }
     }
 };

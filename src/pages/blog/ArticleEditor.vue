@@ -4,7 +4,7 @@
             <label for="article-title">标题：</label>
             <input id="article-title" placeholder="请输入标题" type="text" v-model="article.title">
         </div>
-        <mavon-editor class="editor" v-model="article.content" @save="saveArticle()" />
+        <mavon-editor ref=mavonEditor class="editor" @imgAdd="$imgAdd" v-model="article.content" @save="saveArticle()" />
         <div><button id="submit-article" type="button" class="btn btn-default" @click="submitArticle()">提交</button></div>
     </div>
 </template>
@@ -65,6 +65,25 @@
                     }else {
                         alert('文章添加失败！')
                     }
+                })
+            },
+            // 绑定@imgAdd event
+            $imgAdd(pos, $file){
+                // 第一步.将图片上传到服务器.
+                var formdata = new FormData();
+                formdata.append('file', $file);
+                http.request({
+                    url: getApi(api.blog.article.uploadArticlePicture),
+                    data: formdata,
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                }).then((res) => {
+                    // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+                    /**
+                     * $vm 指为mavonEditor实例，可以通过如下两种方式获取
+                     * 1. 通过引入对象获取: `import {mavonEditor} from ...` 等方式引入后，`$vm`为`mavonEditor`
+                     * 2. 通过$refs获取: html声明ref : `<mavon-editor ref=md ></mavon-editor>，`$vm`为 `this.$refs.md`
+                     */
+                    this.$refs.mavonEditor.$img2Url(pos, '/store/' + res.data.data[0].url);
                 })
             }
         },
