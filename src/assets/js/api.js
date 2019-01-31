@@ -22,7 +22,9 @@ export const api = {
             // 点赞
             praiseArticle: '/blog/article/praise-article/',
             // 上传文章图片
-            uploadArticlePicture: '/blog/article/upload-article-picture'
+            uploadArticlePicture: '/blog/article/upload-article-picture',
+            //添加评论
+            addArticleComment: '/blog/article/add-article-comment'
         }
     }
 };
