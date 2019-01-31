@@ -38,6 +38,7 @@
 
 <script>
     import {LOGOUT} from "@/assets/js/mutation-types";
+    import {api, getApi, http, resCode} from "@/assets/js/api";
 
     export default {
         name: 'User',
@@ -79,7 +80,17 @@
              },
             //注销
             logout () {
-                this.$store.commit(LOGOUT);
+                 let vue = this;
+                vue.$store.commit(LOGOUT);
+                http.request({
+                    url: getApi(api.login.logout)
+                }).then(function (res) {
+                    if (res.data.code === resCode.SUCCESS.code) {
+                        console.log('注销成功！');
+                    }
+                    //不管是否成功都要注销
+                    vue.$router.push('/');
+                });
             }
         },
         created () {

@@ -15,18 +15,24 @@
         </div>
         <div class="write-comment">
             <label for="comment-textarea">发表评论：</label>
-            <textarea id="comment-textarea" class="form-control" rows="3">{{addCommentRequest.content}}</textarea>
+            <textarea id="comment-textarea" class="form-control" rows="3" v-model="addCommentRequest.content"></textarea>
             <div style="text-align: right;margin-top: 2px"><button class="btn btn-default btn-sm" type="button" @click="addArticleComment">确定</button></div>
         </div>
         <div class="article-comment">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">评论</a></li>
+                <li role="presentation" class="active"><a href="#comment-list">评论</a></li>
             </ul>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-info">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
-                <a href="#" class="list-group-item list-group-item-info">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-info">Vestibulum at eros</a>
+                <div v-if="articleCommentList.length === 0" style="text-align: center">暂无评论噢~</div>
+                <a href="javascript:" class="list-group-item list-group-item-info" v-for="comment in articleCommentList">
+                    {{comment.content}}
+                    <div class="comment-foot" style="text-align: right">
+                        <span class="comment-foot-item-group">
+                            <span class="foot-item">{{comment.createUser.username}}</span>
+                            <span class="foot-item">{{getCommentTime(comment.createTime)}}</span>
+                        </span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -36,7 +42,7 @@
 
 
     import {getParsedTime} from "../../assets/js/common";
-    import {api, getApi, http} from "@/assets/js/api";
+    import {api, getApi, http, resCode} from "@/assets/js/api";
     import {mavonEditor} from 'mavon-editor';
     import hljs from 'highlight.js';
 
@@ -62,7 +68,15 @@
                     articleId: null,
                     //被回复的评论id
                     toCommentId: null
-                }
+                },
+                getArticleCommentRo: {
+                    articleId: '',
+                    queryPage: {
+                        pageNum: 1,
+                        pageSize: 20
+                    }
+                },
+                articleCommentList: []
             }
         },
         computed: {
@@ -113,19 +127,47 @@
             //添加文章评论
             addArticleComment(){
                 let vue = this;
+                vue.addCommentRequest.articleId = vue.article.id;
                 http.request({
                     url: getApi(api.blog.article.addArticleComment),
                     data: vue.addCommentRequest
                 }).then(function (res) {
-                    if (res.data.code === 0) {
-                        alert('评论成功！');
+                    let code = res.data.code;
+                    let msg = res.data.msg;
+                    if (code === resCode.SUCCESS.code) {
+                        alert(resCode.SUCCESS.msg);
+                        vue.getArticleComment();
+                    }else if (code === resCode.UNAUTHENTICATED.code) {
+                        alert(resCode.UNAUTHENTICATED.msg);
+                    }else if (code === resCode.INVALID_TOKEN.code) {
+                        alert(msg);
+                    }else {
+                        alert(msg);
                     }
                 })
+            },
+            //查询评论
+            getArticleComment(){
+                let vue = this;
+                http.request({
+                    url: getApi(api.blog.article.getCommentByCondition),
+                    data: vue.getArticleCommentRo
+                }).then(function (res) {
+                    if (res.data.code === resCode.SUCCESS.code) {
+                        vue.articleCommentList = res.data.data.list;
+                    }else {
+                        alert(res.data.msg);
+                    }
+
+                })
+            },
+            getCommentTime(timestamp) {
+                return getParsedTime(timestamp);
             }
         },
         created() {
             this.getArticle();
-            this.addCommentRequest.articleId = this.article.id;
+            this.getArticleComment();
         }
     }
 </script>
@@ -168,5 +210,13 @@
     .foot-item{
         margin-left: 5px;
         margin-right: 5px;
+    }
+    .comment-foot{
+        text-align: right;
+    }
+    .comment-foot-item-group{
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10%;
     }
 </style>

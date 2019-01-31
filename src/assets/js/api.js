@@ -8,7 +8,8 @@ export const api = {
 
     login: {
         login: '/user-auth/login',
-        register: '/user-auth/register-account'
+        register: '/user-auth/register-account',
+        logout: '/user-auth/logout'
     },
     webStatistic: {
         clicksInc: '/user-auth/clicks-inc'
@@ -24,31 +25,48 @@ export const api = {
             // 上传文章图片
             uploadArticlePicture: '/blog/article/upload-article-picture',
             //添加评论
-            addArticleComment: '/blog/article/add-article-comment'
+            addArticleComment: '/blog/article/add-article-comment',
+            //查询评论
+            getCommentByCondition: '/blog/article/query-comment-by-condition'
         }
     }
 };
 
 // 返回的状态码
 export const resCode = {
-    SUCCESS: 0
+    SUCCESS: {
+        code: 0,
+        msg: '成功'
+    },
+    INVALID_TOKEN: {
+        code: 6,
+        msg: '登录已过期，请重新登录'
+    },
+    UNAUTHENTICATED: {
+        code: 7,
+        msg: '请先登录'
+    }
 }
 
 export function getApi (name) {
     return api.hostName + name;
 }
 
+
+let http = {};
 /**
  * 创建axios用于http请求
  */
 export function createAxios () {
-    return axios.create({
+    let token = getLocalStorage(storageKey.token);
+    http = axios.create({
         baseURL: '/',
-        headers: {token: getLocalStorage(storageKey.token)},
+        headers: {token: token === null ? '' : token},
         method: 'post'
     });
 }
-export const http = createAxios();
+createAxios();
+export {http}
 
 /**
  * 注册用户

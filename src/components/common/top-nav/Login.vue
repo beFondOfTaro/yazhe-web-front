@@ -57,8 +57,7 @@
 </template>
 
 <script>
-    import * as common from '../../../assets/js/common';
-    import {api, getApi, http, createAxios, login} from "@/assets/js/api";
+    import {api, getApi, http, createAxios, login, resCode} from "@/assets/js/api";
     import {LOGIN,DISPALY_LOGIN_MODAL} from "@/assets/js/mutation-types";
 
     export default {
@@ -97,9 +96,6 @@
             // 绑定模态框事件
             let vue = this;
             $("#login-modal").on("show.bs.modal", function(e) {
-            vue.$store.commit(DISPALY_LOGIN_MODAL);
-            });
-            $("#login-modal").on("hide.bs.modal", function(e) {
             vue.$store.commit(DISPALY_LOGIN_MODAL);
             });
         }
