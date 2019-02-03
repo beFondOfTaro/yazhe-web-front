@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <!-- 文章列表 -->
-                <div class="col-xs-12 col-md-12"><article-list/></div>
+                <div class="col-xs-9 col-md-9 col-xs-offset-2 col-md-offset-2"><article-list/></div>
             </div>
         </div>
 
@@ -29,17 +29,5 @@
 <style scoped>
     .blog{
         margin-top: 51px;
-    }
-
-    .hr_left {
-        width: 50px;
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .hr_right {
-        width: 80%;
-        display: inline-block;
-        vertical-align: middle;
     }
 </style>

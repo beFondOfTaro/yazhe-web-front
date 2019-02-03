@@ -1,5 +1,6 @@
 <template>
     <div id="article-page" class="container">
+        <mavon-editor class="editor" v-show="false"/>
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h1 class="panel-title">{{article.title}}</h1>
@@ -40,11 +41,13 @@
 
 <script>
 
-
+    import Vue from 'vue';
     import {getParsedTime} from "../../assets/js/common";
     import {api, getApi, http, resCode} from "@/assets/js/api";
-    import {mavonEditor} from 'mavon-editor';
-    import hljs from 'highlight.js';
+    import mavonEditor from 'mavon-editor';
+
+    // 使用markdown编辑器
+    Vue.use(mavonEditor);
 
     export default {
         name: "Article",
@@ -81,17 +84,12 @@
         },
         computed: {
             getContent() {
-                return mavonEditor.getMarkdownIt().set({
-                    highlight: function (str, lang) {
-                        if (lang && hljs.getLanguage(lang)) {
-                            try {
-                                return hljs.highlight(lang, str).value;
-                            } catch (__) {}
-                        }
-
-                        return ''; // use external default escaping
-                    }
-                }).render(this.article.content);
+                /*
+                虽然不知道为什么，但是一旦打开f12并关闭缓存后再刷新，
+                代码高亮就会消失，mavon-editor这个东西是真的不好用！各种bug
+                目前也只能这样了，不影响用户体验
+                 */
+                return mavonEditor.markdownIt.render(this.article.content);
             },
             getCreatedTime() {
                 return getParsedTime(this.article.createTime);

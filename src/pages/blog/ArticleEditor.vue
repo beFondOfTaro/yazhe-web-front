@@ -17,8 +17,6 @@
     import {getLocalStorage, QueryPage, setLocalStorage, storageKey} from "@/assets/js/common";
     import {api, getApi, http} from "@/assets/js/api";
 
-    // 使用markdown编辑器
-    Vue.use(mavonEditor);
     let md = mavonEditor.markdownIt;
     //关闭工具栏上的“查看html源码”,没起作用
     md.set({
@@ -27,7 +25,8 @@
         }
     });
     md.use(emoji);
-
+    // 使用markdown编辑器
+    Vue.use(mavonEditor);
     export default {
         name: "ArticleEditor",
         data () {

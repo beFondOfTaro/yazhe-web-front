@@ -8,9 +8,9 @@
                     </h2>
                     <h3 class="post-subtitle" v-text="getArticleDigest(article.content)"></h3>
                 </router-link>
-                <p class="post-meta">Posted by
-                    <a href="#">Start Bootstrap</a>
-                    on September 24, 2019 <span class="glyphicon glyphicon-heart"></span> {{article.praiseClicks}}
+                <p class="post-meta">
+                    <a href="javascript:">{{article.createdUsername}}</a>
+                    发表于{{getParsedTime(article.createTime)}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-heart"></span> {{article.praiseClicks}}
                     <span>阅读量：{{article.readingAmount}}</span></p>
             </div>
             <hr>
@@ -77,15 +77,30 @@
         overflow: hidden;
     }
     .post-preview{
-        max-height: 156px;
-        overflow: hidden;
+
     }
     .post-preview>a {
         color: #212529;
     }
+    .post-preview>a:hover{
+        color: #007bff;
+        text-decoration: none;
+    }
+    .post-preview>a>.post-title {
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
     .post-preview>a>.post-subtitle {
         font-weight: 300;
         margin: 0 0 10px;
+
+        /*文本超出隐藏*/
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        /*显示文本行数*/
+        -webkit-line-clamp: 3;
+        overflow: hidden;
     }
     .post-preview>.post-meta {
         font-size: 18px;
