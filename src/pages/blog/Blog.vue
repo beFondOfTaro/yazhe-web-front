@@ -1,14 +1,10 @@
 <template>
     <div class="blog">
-        <!-- 技术日记 -->
+        <carousel/>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-12"><carousel/></div>
-                <!-- 分割线 -->
-                <div class="col-xs-12 col-md-12"><hr class="hr_left">L<hr class="hr_right"></div>
                 <!-- 文章列表 -->
-                <div class="col-xs-9 col-md-9"><article-list/></div>
-                <div class="col-xs-3 col-md-3"><newest-comment-list/></div>
+                <div class="col-xs-12 col-md-12"><article-list/></div>
             </div>
         </div>
 
@@ -19,15 +15,13 @@
     import TopNav from "@/components/common/top-nav/TopNav";
     import Carousel from "@/components/blog/Carousel";
     import ArticleList from "@/components/blog/ArticleList";
-    import NewestCommentList from "@/components/blog/NewestCommentList";
 
     export default {
         name: "blog",
         components: {
             TopNav,
             Carousel,
-            ArticleList,
-            NewestCommentList
+            ArticleList
         }
     }
 </script>

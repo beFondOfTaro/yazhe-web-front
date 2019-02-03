@@ -12,19 +12,16 @@
       </div>
 
     </div>
-    <Footer></Footer>
   </div>
 </template>
 
 <script>
-    import Footer from '@/components/index/Footer'
     import TopNav from "@/components/common/top-nav/TopNav"
 
     export default {
         name: 'Index',
         components: {
-            TopNav,
-            Footer
+            TopNav
         }
     }
 </script>

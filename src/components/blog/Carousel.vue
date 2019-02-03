@@ -72,13 +72,9 @@
 
 <style scoped>
     /* 轮播图 */
-    .carousel {
-        height: 360px;
+    .carousel,.carousel .item {
         background-color: #000;
-    }
-    .carousel .item {
-        background-color: #000;
-        height: 360px;
+        height: 532px;
     }
     .carousel img{
         margin: auto;
@@ -89,5 +85,11 @@
     }
     .carousel-indicators {
         margin-bottom: 38px;
+    }
+
+    @media screen and (max-width:980px){
+        .carousel,.carousel .item {
+            height: 320px;
+        }
     }
 </style>

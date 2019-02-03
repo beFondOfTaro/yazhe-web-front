@@ -1,35 +1,19 @@
 <template>
         <div class="list-group div_article">
-            <!-- 子头栏 -->
-            <a href="#" class="list-group-item active item_article_first">
-                <h4 class="list-group-item-heading">
-                    最新文章
-                </h4>
-            </a>
             <!-- 文章列表 -->
-            <div class="list-group-item item_article" v-for="article in articleList" :key="article.id">
-                <div class="row">
-                    <div class="div_center col-xs-9">
-                        <div class="list-group-item-heading div_article_title">
-                            <router-link :to="{'name': 'Article', query: {articleId: article.id}}"><strong>{{article.title}}</strong></router-link>
-                        </div>
-                        <div class="list-group-item-text div_article_content" v-text="getArticleDigest(article.content)">
-                        </div>
-                    </div>
-                    <!-- 右侧图片，信息 -->
-                    <div class="col-xs-3 div_right_info">
-                        <img class="iv_article img-rounded" src="../../assets/img/article-img.jpg">
-                    </div>
-                    <br>
-                    <div class="col-xs-6">
-                        <span>时间：{{getParsedTime(article.createTime)}}</span>
-                    </div>
-                    <div class="col-xs-6 div_right_info">
-                        <span class="glyphicon glyphicon-heart"></span> {{article.praiseClicks}}
-                        <span>阅读量：{{article.readingAmount}}</span>
-                    </div>
-                </div>
+            <div class="post-preview" v-for="article in articleList" :key="article.id">
+                <router-link :to="{'name': 'Article', query: {articleId: article.id}}">
+                    <h2 class="post-title">
+                        {{article.title}}
+                    </h2>
+                    <h3 class="post-subtitle" v-text="getArticleDigest(article.content)"></h3>
+                </router-link>
+                <p class="post-meta">Posted by
+                    <a href="#">Start Bootstrap</a>
+                    on September 24, 2019 <span class="glyphicon glyphicon-heart"></span> {{article.praiseClicks}}
+                    <span>阅读量：{{article.readingAmount}}</span></p>
             </div>
+            <hr>
         </div>
 </template>
 
@@ -87,51 +71,44 @@
         margin-top: 24px;
     }
 
-    /* 文章顶部栏 */
-    .item_article_first {
-        background-color: #34374C !important;
-        border-color: #34374C !important;
-    }
-
-    .item_article {
-        min-height: 120px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        overflow: hidden;
-    }
-
     .item_article .row {
         width: 100%;
         align-items: center;
         overflow: hidden;
     }
-
-    .div_center {
-        height: auto;
-        max-height: 140px;
+    .post-preview{
+        max-height: 156px;
         overflow: hidden;
     }
-
-    .div_article_title {
-        font-size: 22px;
+    .post-preview>a {
+        color: #212529;
     }
-
-    .div_article_content {
-        color: #a0a0a0;
-        word-wrap: break-word;
-        word-break: break-all;
-        width: 100%;
+    .post-preview>a>.post-subtitle {
+        font-weight: 300;
+        margin: 0 0 10px;
     }
-
-    .iv_article {
-        width: 88px;
-        height: 88px;
-        margin: auto;
+    .post-preview>.post-meta {
+        font-size: 18px;
+        font-style: italic;
+        margin-top: 0;
+        color: #868e96;
     }
-
-    .div_right_info {
-        text-align: right;
+    .post-preview>.post-meta>a {
+        text-decoration: none;
+        color: #212529;
     }
-
+    p {
+        line-height: 1.5;
+        margin: 30px 0;
+    }
+    a {
+        -webkit-transition: all .2s;
+        transition: all .2s;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 800;
+        font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        line-height: 1.2;
+        color: inherit;
+    }
 </style>

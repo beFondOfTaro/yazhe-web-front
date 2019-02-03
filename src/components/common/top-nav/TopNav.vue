@@ -69,5 +69,7 @@
 <style scoped>
     #top-nav {
         text-shadow: 0 1px 3px rgba(0,0,0,.5);
+        font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 16px;
     }
 </style>
